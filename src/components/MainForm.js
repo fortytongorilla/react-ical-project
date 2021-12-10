@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Form, Input, Button, Checkbox, Steps } from "antd";
+import { Form, Input, Button, Checkbox, Steps, Calendar } from "antd";
 
 const { Step } = Steps;
 
@@ -14,6 +14,10 @@ export const MainForm = () => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+  function onPanelChange(value, mode) {
+    console.log(value.format("YYYY-MM-DD"), mode);
+  }
 
   return (
     <div className="form-container">
@@ -58,6 +62,12 @@ export const MainForm = () => {
             </Button>
           </Form.Item>
         </Form>
+      </div>
+      <div>
+        <Calendar
+          onPanelChange={onPanelChange}
+          onSelect={() => console.log(Date.now())}
+        />
       </div>
       <div className="progress-bar">
         <Steps size="small" current={stepState}>
